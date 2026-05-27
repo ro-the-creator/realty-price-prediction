@@ -4,7 +4,9 @@ An end-to-end real estate price prediction project built from scraped realtor.co
 
 <div align='center'>
 
-#### **The final, deployed model can be found [online](https://realty-prediction.streamlit.app/). Realty price prediction can be conducted by adjusting home listing features (bedroom/bathroom count, acreage, etc.).**
+#### **The final, deployed model can be found [here](https://realty-prediction.streamlit.app/). Realty price prediction can be conducted by adjusting home listing features (bedroom/bathroom count, acreage, etc.).**
+
+<img width="961" height="625" alt="image" src="https://github.com/user-attachments/assets/aaec528c-c90d-4eac-8fe0-11de9b9d95aa" />
 
 </div>
 
