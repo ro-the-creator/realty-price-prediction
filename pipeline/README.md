@@ -1,6 +1,9 @@
 # Data Cleaning Documentation: Realty Price Prediction
 
-This document outlines the data cleaning steps performed in the `cleaning-eda.ipynb` notebook for the New York subset of the realtor.com dataset.
+This document outlines the data cleaning steps performed in the `cleaning_pipeline.py` Python file for the realtor.com dataset.
+
+> [!NOTE]
+> Cleaning was done manually in a Jupyter notebook first, which can be found [here](../notebooks/cleaning-eda.ipynb).
 
 ## 1. Data Loading and Initial Inspection
 - Loaded the raw data from `realtor-data.csv`.
@@ -32,10 +35,21 @@ This document outlines the data cleaning steps performed in the `cleaning-eda.ip
   - Converted `price`, `bed`, `bath`, and `house_size` columns to integer type after confirming values were effectively integers.
 
 ## 5. Output
-- Saved the cleaned New York data to `data/clean_ny_data.csv` for modeling.
+- Saved the cleaned New York data to `pipeline/data/output/clean_ny_data.csv` for modeling.
 
 ---
 
 **Note:**
-- All cleaning steps were performed in the notebook `notebooks/cleaning-eda.ipynb`.
+- All cleaning steps were performed manually first, in the notebook `notebooks/cleaning-eda.ipynb`.
 - The cleaning process prioritized data quality for modeling, with a focus on removing extreme outliers and ensuring completeness of key features.
+- These steps were then consolidated into `pipeline/cleaning_pipeline.py`, which can be run as a standalone script to reproduce the cleaned dataset end-to-end.
+
+## 6. Quickstart
+
+Run the pipeline from the project root directory:
+
+```bash
+python pipeline/cleaning_pipeline.py
+```
+
+Ensure the csv file is in the `pipeline/data/input` folder, labeled as `realtor-data.csv`.

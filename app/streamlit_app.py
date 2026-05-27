@@ -19,8 +19,24 @@ except Exception as exc:
 
 st.set_page_config(page_title="Realty Price Prediction", layout="wide")
 
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "cleaned_ny_listings.csv"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_PATH_CANDIDATES = [
+    PROJECT_ROOT / "pipeline" / "data" / "output" / "cleaned_ny_listings.csv",
+    PROJECT_ROOT / "data" / "cleaned_ny_listings.csv",
+]
 FEATURE_COLS = ["city_te", "house_size", "acre_lot", "bath", "bed"]
+
+
+def resolve_data_path() -> Path:
+    for candidate in DATA_PATH_CANDIDATES:
+        if candidate.exists():
+            return candidate
+
+    searched_paths = "\n".join(f"- {path}" for path in DATA_PATH_CANDIDATES)
+    raise FileNotFoundError(
+        "Could not find cleaned dataset. Checked:\n"
+        f"{searched_paths}"
+    )
 
 
 def regression_metrics(y_true: pd.Series, y_pred: np.ndarray) -> dict:
@@ -33,7 +49,7 @@ def regression_metrics(y_true: pd.Series, y_pred: np.ndarray) -> dict:
 
 @st.cache_data
 def load_data() -> pd.DataFrame:
-    return pd.read_csv(DATA_PATH)
+    return pd.read_csv(resolve_data_path())
 
 
 @st.cache_resource
